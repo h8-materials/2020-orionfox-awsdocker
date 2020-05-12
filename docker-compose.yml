@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:4.1
+    ports:
+      - 37017:27017
+  app1:
+    container_name: app1
+    volumes:
+      - ".:/usr/local/application"
+    build: .
+    ports:
+      - 3003:3000
+    depends_on:
+      - mongo
